@@ -1,6 +1,9 @@
 import Button from './ui/button.component';
 import { createJob } from '../api/jobs.api';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { AxiosError } from 'axios';
+import ApiResponse from '../types/api-response.type';
 
 const Header = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,12 +11,11 @@ const Header = () => {
     setIsLoading(true);
     try {
       const response = await createJob();
-      if (response.error) {
-        console.error(response.error);
-        return;
-      }
+      toast.success(response.message);
     } catch (error) {
       console.error(error);
+      const err = error as AxiosError<ApiResponse<unknown>>;
+      toast.error(err.response?.data.error as string);
     } finally {
       setIsLoading(false);
     }
