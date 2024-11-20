@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import JobType from '../types/Job.type';
+import JobType from '../types/job.type';
 import { getJobs } from '../api/jobs.api';
 import Job from '../components/job.component';
 
@@ -20,10 +20,12 @@ const JobsPage = () => {
   }, []);
 
   return (
-    <div className="max-w-[960px] mx-auto">
-      {jobs.map((job) => {
-        return <Job job={job} />;
-      })}
+    <div>
+      <div className="max-w-[960px] mx-auto flex flex-wrap gap-4 justify-between">
+        {jobs.map((job) => {
+          return <Job job={job} />;
+        })}
+      </div>
     </div>
   );
 };

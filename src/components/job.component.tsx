@@ -1,5 +1,7 @@
 import React from 'react';
-import JobType from '../types/Job.type';
+import JobType from '../types/job.type';
+import JobStatus from '../types/job-status.enum';
+import placeholder from '../assets/placeholder.svg';
 
 type JobProps = {
   job: JobType;
@@ -9,10 +11,30 @@ const Job: React.FC<JobProps> = ({ job }) => {
   return (
     <div
       key={job.id}
-      className="bg-white shadow-md p-4 mb-4 flex items-center gap-4"
+      className="bg-white shadow-md p-6 mb-4 flex flex-col items-center gap-4 max-w-[300px] rounded-md"
     >
-      <img src={job.result} alt="Job" className="w-24 h-24" />
-      <h2 className="text-lg font-bold text-primary">{job.status}</h2>
+      <div className="max-w-[350px] max-h-[200px] overflow-hidden rounded-md">
+        {job.status === JobStatus.RESOLVED ? (
+          <img
+            src={job.result}
+            alt="Job"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <img
+            src={placeholder}
+            alt="Job Placeholder"
+            className="w-full h-full object-cover"
+          />
+        )}
+      </div>
+      <p
+        className={`text-lg font-bold ${
+          job.status === JobStatus.RESOLVED ? 'text-primary' : 'text-secondary'
+        }`}
+      >
+        Status: {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+      </p>
     </div>
   );
 };
