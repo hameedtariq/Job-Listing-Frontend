@@ -23,7 +23,7 @@ Follow the steps below to set up and run the project locally:
 Clone the project to your local machine:
 
 ```bash
-git clone git@github.com:hameedtariq/Job-Listing-Frontend.git
+git clone git@github.com:hameedtariq/Job-Listing-Frontend.git frontend
 
 cd frontend
 ```
@@ -59,3 +59,11 @@ The frontend relies on the backend API for data. Ensure the backend is running. 
 ### **6. Navigate to link from the console**
 
 Once both backend and frontend are running. Open the frontend link in the browser to use the application.
+
+---
+
+## **Time Report**
+
+- Project setup and displaying jobs: 2hrs
+- Refresh and Create Jobs functionality: 1hr
+- Total: 3hrs
