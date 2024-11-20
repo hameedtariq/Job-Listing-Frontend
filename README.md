@@ -1,50 +1,61 @@
-# React + TypeScript + Vite
+# Job Listing Project Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the frontend codebase for the project. It provides the user interface for managing jobs and interacting with the backend API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Tech Stack**
 
-## Expanding the ESLint configuration
+- **React**
+- **TypeScript**
+- **Axios**
+- **TailwindCSS**
+- **Vite**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## **Setup Instructions**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Follow the steps below to set up and run the project locally:
+
+### **1. Clone the Repository**
+
+Clone the project to your local machine:
+
+```bash
+git clone git@github.com:hameedtariq/Job-Listing-Frontend.git
+
+cd frontend
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### **2. Install Dependencies**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Navigate to the root directory of the project and install the required dependencies:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
 ```
+
+### **3. Configure Environment Variables**
+
+Create a .env file in the root directory of the project. Add the necessary environment variables:
+
+```bash
+VITE_BACKEND_URL=http://localhost:3001
+```
+
+### **4. Start the Application**
+
+Run the following command to start the development server:
+
+```bash
+npm run dev
+```
+
+### **5. Ensure Backend is Running**
+
+The frontend relies on the backend API for data. Ensure the backend is running. Refer to the backend repository's documentation for setup instructions.
+
+### **6. Navigate to link from the console**
+
+Once both backend and frontend are running. Open the frontend link in the browser to use the application.
