@@ -1,33 +1,42 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import JobType from '../types/job.type';
 import { getJobs } from '../api/jobs.api';
 import Job from '../components/job.component';
 import { toast } from 'react-toastify';
+import Button from '../components/ui/button.component';
+import ApiResponse from '../types/api-response.type';
 
 const JobsPage = () => {
   const [jobs, setJobs] = useState<JobType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const response = await getJobs();
-        setJobs(response.data || []);
-      } catch (error) {
-        console.error(error);
-        toast.error('Failed to fetch jobs');
-      }
-    };
-    fetchJobs();
-
-    const interval = setInterval(() => {
-      fetchJobs();
-    }, 5000);
-
-    return () => clearInterval(interval);
+  const fetchJobs = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await getJobs();
+      setJobs(response.data || []);
+      toast.success('Jobs fetched successfully');
+    } catch (error) {
+      console.error(error);
+      toast.error((error as ApiResponse<unknown>).message);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
+  useEffect(() => {
+    fetchJobs();
+  }, [fetchJobs]);
+
+  const handleRefresh = () => {
+    fetchJobs();
+  };
+
   return (
-    <div>
+    <div className="flex flex-col">
+      <div className="self-end">
+        <Button label="Refresh" onClick={handleRefresh} isLoading={isLoading} />
+      </div>
       <div className="max-w-[960px] mx-auto flex flex-wrap gap-6">
         {jobs.map((job) => {
           return <Job job={job} />;

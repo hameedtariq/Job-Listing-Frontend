@@ -9,7 +9,7 @@ api.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    return { error: error.message };
+    return Promise.reject(error.response.data);
   }
 );
 
