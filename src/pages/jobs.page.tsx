@@ -15,7 +15,6 @@ const JobsPage = () => {
     try {
       const response = await getJobs();
       setJobs(response.data || []);
-      toast.success('Jobs fetched successfully');
     } catch (error) {
       console.error(error);
       toast.error((error as ApiResponse<unknown>).message);
@@ -35,7 +34,11 @@ const JobsPage = () => {
   return (
     <div className="flex flex-col">
       <div className="self-end">
-        <Button label="Refresh" onClick={handleRefresh} isLoading={isLoading} />
+        <Button
+          label="Refresh Jobs"
+          onClick={handleRefresh}
+          isLoading={isLoading}
+        />
       </div>
       <div className="max-w-[960px] mx-auto flex flex-wrap gap-6">
         {jobs.map((job) => {
